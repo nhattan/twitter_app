@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tweet.user.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @tweet.body %>
+</p>
+
+<%= link_to 'Back', tweets_path %>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweeter</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>">
+        Tweeter
+      </a>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <p class="navbar-text navbar-right"><%= link_to current_user.name, tweets_path %></p>
+        <% else %>
+          <li><%= link_to "Sign in with twitter", "auth/twitter", class: "navbar-right" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
+</html>
