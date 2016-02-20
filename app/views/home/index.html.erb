@@ -2,24 +2,24 @@
 
 <%= render "tweets/form" %>
 
+<div class="alert alert-info hidden" role="alert">
+  <a href="#" class="alert-link" id="notification"></a>
+</div>
+
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Created at</th>
-      <th>Body</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody class="tweets">
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.user.name %></td>
-        <td><%= time_ago_in_words(tweet.created_at) %></td>
-        <td><%= tweet.text %></td>
-      </tr>
-    <% end %>
+  <tbody id="tweets">
+    <%= hidden_field_tag :since_id, @tweets.first.id if @tweets.first %>
+    <%= render @tweets, hidden: false %>
   </tbody>
 </table>
 

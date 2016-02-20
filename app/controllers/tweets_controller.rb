@@ -1,8 +1,14 @@
-class TweetsController < ApplicationController
+class TweetsController < BaseUserController
   before_action :set_tweet, only: [:show, :update, :destroy]
 
   def index
-    @tweets = Tweet.all
+    if params[:since_id].present?
+      @tweets = current_user.twitter.user_timeline(since_id: params[:since_id])
+    elsif params[:max_id].present?
+      @tweets = current_user.twitter.user_timeline(max_id: params[:max_id])
+    else
+      @tweets = current_user.twitter.user_timeline
+    end
   end
 
   def show
