@@ -3,11 +3,11 @@ class TweetsController < BaseUserController
 
   def index
     if params[:since_id].present?
-      @tweets = current_user.twitter.user_timeline(since_id: params[:since_id])
+      @tweets = current_user.twitter_client.user_timeline(since_id: params[:since_id])
     elsif params[:max_id].present?
-      @tweets = current_user.twitter.user_timeline(max_id: params[:max_id])
+      @tweets = current_user.twitter_client.user_timeline(max_id: params[:max_id])
     else
-      @tweets = current_user.twitter.user_timeline
+      @tweets = current_user.twitter_client.user_timeline
     end
   end
 
@@ -22,7 +22,7 @@ class TweetsController < BaseUserController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     @tweet.save
-    @tweet = current_user.twitter.status @tweet.tweet_id
+    @tweet = current_user.twitter_client.status @tweet.tweet_id
     respond_to do |format|
       format.html {redirect_to root_path}
     end

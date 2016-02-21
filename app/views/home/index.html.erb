@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= render "tweets/form" %>
 
 <div class="alert alert-info hidden" role="alert">
@@ -26,3 +24,7 @@
 <br>
 
 <%= link_to 'Older', root_path(max_id: @tweets.last.id) %>
+
+<%= content_for :javascript do %>
+  <%= javascript_include_tag 'fetch_tweets' %>
+<% end %>

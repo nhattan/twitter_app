@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get '/auth/:provider/callback', to: 'sessions#create'
+  devise_for :users, class_name: 'FormUser',
+    :controllers => { omniauth_callbacks: 'omniauth_callbacks',
+      registrations: 'registrations'}
 
   resources :tweets, except: [:edit]
 
