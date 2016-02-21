@@ -13,5 +13,5 @@ $ ->
       else
         after = 0
       $.getScript '/?since_id=' + since_id
-    , 60000
+    , 20000
     return

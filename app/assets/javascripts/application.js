@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require friends
+//= require moment
+
+function humanize_time() {
+  $('.timestring').each(function() {
+    $(this).text(moment($(this).data('createdAt')).fromNow());
+  });
+}
+
+$(document).ready(function() {
+  humanize_time();
+});
