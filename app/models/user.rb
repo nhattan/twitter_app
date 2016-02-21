@@ -18,4 +18,17 @@ class User < ActiveRecord::Base
       config.access_token_secret = twitter.access_token_secret
     end
   end
+
+  def suggested_users
+    slugs = twitter_client.suggestions.map(&:slug)
+    twitter_client.suggest_users(slugs.sample).take(Settings.suggest_users_number)
+  end
+
+  def follow user_id
+    twitter_client.follow! user_id.to_i
+  end
+
+  def unfollow user_id
+    twitter_client.unfollow user_id.to_i
+  end
 end

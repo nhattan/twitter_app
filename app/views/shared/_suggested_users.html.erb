@@ -1,0 +1,26 @@
+<h2>Who to follow</h2>
+
+<% current_user.suggested_users.each do |user| %>
+  <div class="row">
+    <% if user.follow_request_sent? %>
+      <div class="follow-button-combo is-following">
+        <%= link_to '#', class: "btn", data: {user_id: user.id} do %>
+          <div class="is-following">Following</div>
+          <div class="to-follow">Follow</div>
+          <div class="to-unfollow">Unfollow</div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="follow-button-combo not-following">
+        <%= link_to '#', class: "btn", data: {user_id: user.id} do %>
+          <div class="is-following">Following</div>
+          <div class="to-follow">Follow</div>
+          <div class="to-unfollow">Unfollow</div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= user.name %>
+  </div>
+<% end %>
+
+
