@@ -3,11 +3,11 @@ class HomeController < BaseUserController
 
   def index
     if params[:since_id].present?
-      @tweets = current_user.twitter.home_timeline(since_id: params[:since_id])
+      @tweets = current_user.twitter_client.home_timeline(since_id: params[:since_id])
     elsif params[:max_id].present?
-      @tweets = current_user.twitter.home_timeline(max_id: params[:max_id])
+      @tweets = current_user.twitter_client.home_timeline(max_id: params[:max_id])
     else
-      @tweets = current_user.twitter.home_timeline
+      @tweets = current_user.twitter_client.home_timeline
     end
   end
 

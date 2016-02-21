@@ -1,21 +1,21 @@
 class User < ActiveRecord::Base
-  def self.find_or_create_from_auth_hash(auth_hash)
-    user = where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
-    user.update(
-      name: auth_hash.info.nickname,
-      profile_image: auth_hash.info.image,
-      token: auth_hash.credentials.token,
-      secret: auth_hash.credentials.secret
-    )
-    user
-  end
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :omniauthable, :database_authenticatable, :registerable,
+    :rememberable, :trackable
+
+  has_many :identities
 
   def twitter
-    @client ||= Twitter::REST::Client.new do |config|
+    identities.where( :provider => "twitter" ).first
+  end
+
+  def twitter_client
+    @twitter_client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.secrets.twitter_api_key
       config.consumer_secret     = Rails.application.secrets.twitter_api_secret
-      config.access_token        = token
-      config.access_token_secret = secret
+      config.access_token        = twitter.access_token
+      config.access_token_secret = twitter.access_token_secret
     end
   end
 end

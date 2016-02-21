@@ -7,12 +7,12 @@ class Tweet < ActiveRecord::Base
   before_destroy :remove_from_twitter
 
   def post_to_twitter
-    tweet = user.twitter.update(body)
+    tweet = user.twitter_client.update(body)
     self.tweet_id = tweet.id
   end
 
   def remove_from_twitter
-    user.twitter.destroy_status(self.tweet_id)
+    user.twitter_client.destroy_status(self.tweet_id)
   end
 
 end
