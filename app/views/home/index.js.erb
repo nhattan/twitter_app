@@ -1,5 +1,6 @@
 <% if @tweets.present? %>
   $('#tweets').prepend("<%= escape_javascript(render(@tweets, hidden: true)) %>")
+  humanize_time()
   $('#since_id').val("<%= @tweets.first.id %>")
   tweets_length = $('.tweet.hidden').length
   $('#notification').html(tweets_length + " new tweets")
