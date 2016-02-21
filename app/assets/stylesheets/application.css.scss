@@ -15,3 +15,32 @@
  */
 
 @import "bootstrap";
+
+/* in SCSS file */
+.follow-button-combo {
+  display: inline-block;
+  /* Following, make the combo's class = "is-following"
+     so only the "Following" text is shown */
+  &.is-following {
+    .btn {@extend .btn-success;}
+    .is-following {display:block;}
+    .to-follow {display:none;}
+    .to-unfollow {display:none;}
+    /* when hover, only the "Unfollow" text is shown */
+    &:hover {
+      .btn{@extend .btn-danger;} /* the button color changes to red */
+      .is-following {display:none;}
+      .to-follow {display:none;}
+      .to-unfollow {display:block;} }
+  }
+
+  /* Not following, make the combo's class = "not-following"
+     so only the "Follow" text is shown */
+  &.not-following {
+    .btn {@extend .btn-default;}
+    .is-following {display:none;}
+    .to-follow {display:block;}
+    .to-unfollow {display:none;}
+    /* when hover, nothing changes */
+  }
+}

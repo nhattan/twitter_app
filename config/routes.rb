@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     :controllers => { omniauth_callbacks: 'omniauth_callbacks',
       registrations: 'registrations'}
 
-  resources :tweets, except: [:edit]
-
   root to: "home#index"
+
+  resources :tweets, except: [:edit]
+  resources :friends, only: [:create, :destroy]
 end
