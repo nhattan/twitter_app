@@ -27,14 +27,12 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'config'
 gem 'momentjs-rails'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'dotenv-rails'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rvm'
+gem 'capistrano-passenger'
 group :development, :test do
   gem 'pry-rails'
 end
