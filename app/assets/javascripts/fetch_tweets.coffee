@@ -1,3 +1,13 @@
+humanize_time = ->
+  $('.timestring').each ->
+    $(this).text moment($(this).data('createdAt')).fromNow()
+    return
+  return
+
+$ ->
+  humanize_time()
+  return
+
 $ ->
   $('#notification').on 'click', (event) ->
     event.preventDefault()
@@ -10,8 +20,14 @@ $ ->
     setInterval ->
       if $('.tweet').length > 0
         since_id = $('#since_id').val()
-      else
-        after = 0
-      $.getScript '/?since_id=' + since_id
-    , 20000
+        $.getScript '/?since_id=' + since_id
+    , 60000
+    return
+
+$ ->
+  $('#more_tweets').on 'click', (event) ->
+    event.preventDefault()
+    max_id = $(this).data('maxId')
+    if max_id
+      $.getScript '/?max_id=' + max_id
     return

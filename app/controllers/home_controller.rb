@@ -6,6 +6,8 @@ class HomeController < BaseUserController
       @tweets = current_user.twitter_client.home_timeline(since_id: params[:since_id])
     elsif params[:max_id].present?
       @tweets = current_user.twitter_client.home_timeline(max_id: params[:max_id])
+      @tweets.shift
+      @more = true
     else
       @tweets = current_user.twitter_client.home_timeline
     end
