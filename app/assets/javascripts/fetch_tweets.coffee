@@ -1,4 +1,4 @@
-humanize_time = ->
+@humanize_time = ->
   $('.timestring').each ->
     $(this).text moment($(this).data('createdAt')).fromNow()
     return
