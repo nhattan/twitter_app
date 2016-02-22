@@ -1,5 +1,5 @@
 <tr class="tweet <%= 'hidden' if hidden %>">
   <td><%= tweet.user.name %></td>
-  <td class="timestring" data-created-at="<%= tweet.created_at.to_time.iso8601 %>"><%= time_ago_in_words tweet.created_at %></td>
+  <td class="timestring" data-created-at="<%= tweet.created_at.to_time.iso8601 %>"></td>
   <td><%= tweet.text %></td>
 </tr>
