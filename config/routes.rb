@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :tweets, except: [:edit]
+  resources :tweets, only: [:index, :create]
   resources :friends, only: [:create, :destroy]
 end
