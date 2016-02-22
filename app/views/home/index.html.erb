@@ -28,7 +28,3 @@
 <br>
 
 <%= link_to 'More', root_path(max_id: @tweets.last.id), id: "more", class: "btn btn-default" %>
-
-<%= content_for :javascript do %>
-  <%= javascript_include_tag 'fetch_tweets' %>
-<% end %>

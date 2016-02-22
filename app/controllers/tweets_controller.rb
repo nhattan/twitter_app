@@ -1,6 +1,4 @@
 class TweetsController < BaseUserController
-  before_action :set_tweet, only: [:show, :update, :destroy]
-
   def index
     if params[:since_id].present?
       @tweets = current_user.twitter_client.user_timeline(since_id: params[:since_id])
@@ -9,13 +7,6 @@ class TweetsController < BaseUserController
     else
       @tweets = current_user.twitter_client.user_timeline
     end
-  end
-
-  def show
-  end
-
-  def new
-    @tweet = Tweet.new
   end
 
   def create
@@ -28,18 +19,7 @@ class TweetsController < BaseUserController
     end
   end
 
-  def update
-    @tweet.update(tweet_params)
-  end
-
-  def destroy
-    @tweet.destroy
-  end
-
   private
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
     def tweet_params
       params.require(:tweet).permit(:user_id, :body)
