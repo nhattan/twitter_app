@@ -49,5 +49,4 @@ namespace :deploy do
     end
   end
 
-  after :migrate, :seed
 end
